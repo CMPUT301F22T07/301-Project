@@ -43,7 +43,7 @@ public class IngredientInStorageTest {
         assertEquals(ingredient.getBestBeforeDate(), "2022-11-03");
         assertEquals(ingredient.getLocation(), "Fridge");
         assertEquals(ingredient.getDocumentId(), null);
-        assertEquals(ingredient.getClass(), "IngredientInStorage");
+        assertEquals(ingredient.getClass(), IngredientInStorage.class);
 
     }
 
