@@ -21,11 +21,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * This class is the controller of database which is responsible of adding, editing, and deleting
- * elements from database.
+ * This class is the controller of database which is responsible of adding,
+ * editing, and deleting elements from database.
  */
 public class DatabaseController {
-    private FirebaseFirestore db = FirebaseFirestore.getInstance(); // connects to the database
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance(); // connects to the database
 
     /**
      * This function adds a ingredient to the database to ingredient storage.
@@ -49,7 +49,7 @@ public class DatabaseController {
                 .collection("Ingredient Storage")
                 .document(documentId)
                 .set(data)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                .addOnSuccessListener( new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         // These are a method which gets executed when the task is succeeded
@@ -136,8 +136,7 @@ public class DatabaseController {
                                           ArrayList<String> editDeleteListSaved, String idOfRecipe) {
         /* sets detailed information of recipe to the recipe document */
         HashMap<String, Object> data = new HashMap<>();
-        String recipeId = idOfRecipe;
-        data.put("Id", recipeId);
+        data.put("Id", idOfRecipe);
         data.put("Image URI", recipeToAdd.getImageURI());
         data.put("Title", recipeToAdd.getTitle());
         data.put("Preparation Time", recipeToAdd.getPreparationTime());
@@ -148,7 +147,7 @@ public class DatabaseController {
         /* add recipe document to the recipe list collection */
         db
                 .collection("Recipes")
-                .document(recipeId)
+                .document(idOfRecipe)
                 .set(data)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -167,7 +166,7 @@ public class DatabaseController {
         for (String id : editDeleteListSaved){
             db
                     .collection("Recipes")
-                    .document(recipeId).collection("Ingredient")
+                    .document(idOfRecipe).collection("Ingredient")
                     .document(id)
                     .delete();
         }
@@ -176,7 +175,7 @@ public class DatabaseController {
         for (IngredientInRecipe ingredient: ingredientInRecipeDataList) {
             data = new HashMap<>();
             String ingredientId = ingredient.getId();
-            data.put("Id", recipeId);
+            data.put("Id", idOfRecipe);
             data.put("Brief Description", ingredient.getBriefDescription());
             data.put("Amount", ingredient.getAmountValue());
             data.put("Unit", ingredient.getUnit());
@@ -184,7 +183,7 @@ public class DatabaseController {
 
             db
                     .collection("Recipes")
-                    .document(recipeId)
+                    .document(idOfRecipe)
                     .collection("Ingredient")
                     .document(ingredientId)
                     .set(data)

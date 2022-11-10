@@ -94,6 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="300dp"
         android:layout_marginTop="150dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:background="@color/dark_green"
         android:scrollbarSize="5dp"
@@ -102,25 +103,55 @@
         app:backgroundTint="@color/dark_green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.579"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordInputTextInputLayout"
-        app:layout_constraintVertical_bias="0.578" />
+        app:layout_constraintVertical_bias="0.636" />
 
     <TextView
         android:id="@+id/forget_password_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="162dp"
-        android:layout_marginEnd="218dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="387dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="138dp"
+        android:background="@color/light_grey"
         android:text="Forget Password"
-        android:textColor="@color/dark_grey"
+        android:textColor="@color/black"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/inputs_confirm_button"
+        app:layout_constraintBottom_toTopOf="@+id/inputs_confirm_button"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordInputTextInputLayout"
-        app:layout_constraintVertical_bias="0.51" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordInputTextInputLayout" />
+
+    <CheckBox
+        android:id="@+id/keep_signed_in_checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/white"
+        android:text="Keep Signed-in"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/new_user_register_text" />
+
+    <TextView
+        android:id="@+id/new_user_register_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="97dp"
+        android:layout_marginBottom="29dp"
+        android:background="@color/green_pear"
+        android:text="Click to register"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/keep_signed_in_checkBox"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordInputTextInputLayout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
