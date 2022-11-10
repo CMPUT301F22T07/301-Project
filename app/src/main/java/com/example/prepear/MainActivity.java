@@ -16,6 +16,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 /**
@@ -72,6 +73,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentForViewRecipeListActivity);
             }
         });
+    }
+
+    public void userLogout(View view){
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        finish();
     }
 
 }

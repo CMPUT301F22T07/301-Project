@@ -47,14 +47,13 @@ import java.util.Map;
 * BackEnd Testing for "Ingredient Storage Collection"
 * */
 public class IngredientStorageDatabaseTest {
-    private FirebaseFirestore mockDB; // for connecting
+    private FirebaseFirestore mockDB = FirebaseFirestore.getInstance(); // for connecting
     private CollectionReference mockIngredientStorageCollection;
     private IngredientInStorage mockIngredient;
     private final DateFormat DATEFORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @BeforeEach
     public void setMockDB(){
-        mockDB = FirebaseFirestore.getInstance();
         setMockIngredientStorageCollection();
     }
 
