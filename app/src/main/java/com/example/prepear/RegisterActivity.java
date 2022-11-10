@@ -25,7 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        // on below part:
         TextView loginText = findViewById(R.id.already_registered_text);
         loginText.setOnClickListener(new View.OnClickListener() {
             @Override
