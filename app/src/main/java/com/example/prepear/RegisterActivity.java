@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 /**
@@ -42,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView loginText;
 
     FirebaseAuth firebaseAuth;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userName = userNameInput.getText().toString().trim();
+                String userName = userNameInput.getText().toString();
                 String userEmail = userEmailInput.getText().toString().trim();
                 String userPasswordFirstAttempt = userFirstPasswordInput.getText().toString().trim();
                 String userPasswordSecondAttempt = userSecondPasswordInput.getText().toString().trim();

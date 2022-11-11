@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         // On below part: extract the email and send the reset link
                         String userEmail = resetEmail.getText().toString();
-                        firebaseAuth.sendPasswordResetEmail(userEmail) // 
+                        firebaseAuth.sendPasswordResetEmail(userEmail) //
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
