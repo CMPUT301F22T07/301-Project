@@ -9,19 +9,24 @@
 package com.example.prepear;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
@@ -58,11 +63,56 @@ public class LoginActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        // On below part:
+        // On below part: the user chooses to register a new account
         registerText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+            }
+        });
+
+        // On below part: the user selects "Forget Password?" option and reset user's password
+        forgetPasswordText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText resetEmail = new EditText(v.getContext());
+                AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
+                passwordResetDialog.setTitle("Reset Your Password ?");
+                passwordResetDialog.setMessage("Enter your email to Receive Reset Password Link");
+                passwordResetDialog.setView(resetEmail);
+
+                passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // On below part: extract the email and send the reset link
+                        String userEmail = resetEmail.getText().toString();
+                        firebaseAuth.sendPasswordResetEmail(userEmail) // 
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(LoginActivity.this,
+                                        "Reset Link has been sent to your email.",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(LoginActivity.this,
+                                                "Error occurs when sending Reset Link !" + e.getMessage(),
+                                                Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                    }
+                });
+
+                passwordResetDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // close the current dialog
+                    }
+                });
+
+                passwordResetDialog.create().show();
             }
         });
 
@@ -73,15 +123,15 @@ public class LoginActivity extends AppCompatActivity {
                 String userPassword = userPasswordInput.getText().toString().trim();
 
                 if (TextUtils.isEmpty(userEmail)) { //
-                    userEmailInput.setError("Please enter your email!");
+                    userEmailInput.setError("Please Enter Your Email!");
                     return;
                 }
                 if (TextUtils.isEmpty(userPassword)) { //
-                    userPasswordInput.setError("Please enter your password!");
+                    userPasswordInput.setError("Please Enter Your Password!");
                     return;
                 }
                 if (userPassword.length() < 6) { //
-                    userPasswordInput.setError("User password minimum length is 6.");
+                    userPasswordInput.setError("User Password Minimum Length is 6.");
                     return;
                 }
 
@@ -93,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) { //
-                            Toast.makeText(LoginActivity.this,"Successful login, Welcome back!",
+                            Toast.makeText(LoginActivity.this,"Successful Login, Welcome back!",
                                     Toast.LENGTH_LONG).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else {
