@@ -59,12 +59,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        if (firebaseAuth.getCurrentUser() != null) { // check if the user is already registered
+        if (firebaseAuth.getCurrentUser() != null) { // Check if the user is already registered
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
 
-        // on below part: for the user to login with existing account and password
+        // On below part: for the user to login with existing account and password
         loginText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (userPasswordFirstAttempt.length() < 6) {
+                if (userPasswordFirstAttempt.length() < 6) { //
                     userFirstPasswordInput.setError("User password minimum length is 6.");
                 }
 
@@ -114,22 +114,25 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 userProgressStatus.setVisibility(View.VISIBLE);
 
-                /* register the user in FireBase */
+                /* Register the user in FireBase */
                 firebaseAuth.createUserWithEmailAndPassword(userEmail, userPasswordFirstAttempt)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
+                        if (task.isSuccessful()) { //
                             Toast.makeText(RegisterActivity.this,"Successful registered!",
-                                    Toast.LENGTH_SHORT).show();
+                                    Toast.LENGTH_LONG).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else {
                             Toast.makeText(RegisterActivity.this, task.getException().getMessage(),
                                     Toast.LENGTH_LONG).show();
+                            userProgressStatus.setVisibility(View.GONE);
                         }
                     }
                 });
             }
         });
+
+
     }
 }
