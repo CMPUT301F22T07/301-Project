@@ -5,18 +5,17 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/goodpear"
     tools:context=".MainActivity">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/ingredient_storage_button"
         android:layout_width="293dp"
         android:layout_height="70dp"
-        android:layout_marginTop="176dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="272dp"
         android:backgroundTint="@color/dark_brown"
         android:text="Ingredient Storage"
         app:cornerRadius="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/recipe_folder_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,11 +24,9 @@
         android:id="@+id/recipe_folder_button"
         android:layout_width="293dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="50dp"
         android:backgroundTint="@color/light_brown"
         android:text="Recipes Folder"
         app:cornerRadius="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/meal_planner_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ingredient_storage_button" />
@@ -38,27 +35,26 @@
         android:id="@+id/meal_planner_button"
         android:layout_width="293dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/yellow_pear"
         android:text="Meal Planner"
         app:cornerRadius="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/shopping_list_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_folder_button" />
+        app:layout_constraintTop_toBottomOf="@+id/shopping_list_button"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/shopping_list_button"
         android:layout_width="293dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="164dp"
         android:backgroundTint="@color/green_pear"
         android:text="Shopping List"
         app:cornerRadius="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/meal_planner_button" />
+        app:layout_constraintTop_toBottomOf="@+id/recipe_folder_button" />
 
     <Button
         android:id="@+id/button"
@@ -73,7 +69,82 @@
         app:backgroundTint="@color/theme_darker"
         app:layout_constraintBottom_toTopOf="@+id/ingredient_storage_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/user_profile_imageView"
+        android:layout_width="136dp"
+        android:layout_height="122dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="267dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_back_text"
+        app:srcCompat="@drawable/empty_profile_picture"
+        tools:srcCompat="@drawable/empty_profile_picture" />
+
+    <TextView
+        android:id="@+id/welcome_back_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="224dp"
+        android:text="Welcome back,"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/userEmail_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="128dp"
+        android:text="User Email"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/ingredient_storage_button"
+        app:layout_constraintStart_toEndOf="@+id/user_profile_imageView"
+        app:layout_constraintTop_toBottomOf="@+id/userName_text"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/user_phoneNumber_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginBottom="90dp"
+        android:text="User Phone Number"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/ingredient_storage_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/user_profile_imageView"
+        app:layout_constraintTop_toBottomOf="@+id/userEmail_text" />
+
+    <TextView
+        android:id="@+id/userName_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="66dp"
+        android:layout_marginEnd="158dp"
+        android:text="User Name"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/user_profile_imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
 

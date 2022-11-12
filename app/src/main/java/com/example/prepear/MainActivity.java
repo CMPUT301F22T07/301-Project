@@ -13,11 +13,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 /**
  * Initialize the opening page of the app
@@ -25,6 +31,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
  * and direct the user to the user-selected section
 */
 public class MainActivity extends AppCompatActivity {
+    // On below part:
+    private TextView userNameTextView;
+    private TextView userEmailTextView;
+    private TextView userPhoneNumberTextView;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore db;
+    String userUID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +49,30 @@ public class MainActivity extends AppCompatActivity {
         final Button ingredientStorageButton = findViewById(R.id.ingredient_storage_button);
         directToViewIngredientStorage(ingredientStorageButton);
         // On below: grab the Button for (after clicking)launching Recipe Folder Section of the app
-        final Button recipeListButton = findViewById(R.id.recipe_folder_button);
-        directToViewRecipeFolder(recipeListButton);
+        final Button recipeFolderButton = findViewById(R.id.recipe_folder_button);
+        directToViewRecipeFolder(recipeFolderButton);
+        // On below part:
+        final Button shoppingListButton = findViewById(R.id.shopping_list_button);
+        // On below Part:
+        final Button mealPlanButton = findViewById(R.id.meal_planner_button);
+
+        userNameTextView = findViewById(R.id.userName_text);
+        userEmailTextView = findViewById(R.id.userEmail_text);
+        userPhoneNumberTextView = findViewById(R.id.user_phoneNumber_text);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+
+        userUID = firebaseAuth.getCurrentUser().getUid();
+        DocumentReference currentUserDocRef = db.collection("Users").document(userUID);
+        currentUserDocRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                userNameTextView.setText(value.getString("UserName"));
+                userEmailTextView.setText(value.getString("UserEmail"));
+                userPhoneNumberTextView.setText(value.getString("UserPhoneNumber"));
+            }
+        });
     }
 
     /**
@@ -76,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * Log out from PrePear and will be re-directed to Login Activity
      * @param view
      */
     public void userLogout(View view){
