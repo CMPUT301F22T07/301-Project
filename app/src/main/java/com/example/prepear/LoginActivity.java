@@ -43,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
     private TextView registerText;
     private TextView forgetPasswordText;
     private Button loginButton;
-    private CheckBox loginKeeperCheckBox;
     ProgressBar loginStatusProgressBar;
     FirebaseAuth firebaseAuth;
 
@@ -57,7 +56,6 @@ public class LoginActivity extends AppCompatActivity {
         registerText = findViewById(R.id.new_user_register_text);
         forgetPasswordText = findViewById(R.id.forget_password_text);
         loginButton = findViewById(R.id.inputs_confirm_button);
-        loginKeeperCheckBox = findViewById(R.id.keep_signed_in_checkBox);
         loginStatusProgressBar = findViewById(R.id.user_login_status);
         loginStatusProgressBar.setVisibility(View.INVISIBLE);
 

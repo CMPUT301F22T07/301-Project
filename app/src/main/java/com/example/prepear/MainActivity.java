@@ -54,31 +54,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // On below: set the customized MainActivity's content up front after launching the app
         setContentView(R.layout.activity_main);
-        // On below: grab the Button for (after clicking)launching Ingredient Storage Section of the app
+        // On below: grab the Button for (after clicking)launching Ingredient Storage section of the app
         final Button ingredientStorageButton = findViewById(R.id.ingredient_storage_button);
         directToViewIngredientStorage(ingredientStorageButton);
-        // On below: grab the Button for (after clicking)launching Recipe Folder Section of the app
+        // On below: grab the Button for (after clicking)launching Recipe Folder section of the app
         final Button recipeFolderButton = findViewById(R.id.recipe_folder_button);
         directToViewRecipeFolder(recipeFolderButton);
-        // On below part:
+        // On below part: grab the Button for (after clicking)launching Shopping List section of the app
         final Button shoppingListButton = findViewById(R.id.shopping_list_button);
-        // On below Part:
+        // On below Part: grab the Button for (after clicking)launching Recipe Meal Plan section of the app
         final Button mealPlanButton = findViewById(R.id.meal_planner_button);
 
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-        final FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-
+        final FirebaseUser currentUser = firebaseAuth.getCurrentUser(); // get the current user
+        // On below part: find the corresponding View objects for use
         userNameTextView = findViewById(R.id.userName_text);
         userEmailTextView = findViewById(R.id.userEmail_text);
         userPhoneNumberTextView = findViewById(R.id.user_phoneNumber_text);
         userRequiredVerificationTextView = findViewById(R.id.email_verification_text);
         emailVerificationActionButton = findViewById(R.id.email_verification_action_button);
-        if (currentUser.isEmailVerified()) {
+
+        if (currentUser.isEmailVerified()) { // if the user has completed email verification
+            // On below part: activate the four main functionalities of PrePear for user to use
             ingredientStorageButton.setEnabled(true);
             recipeFolderButton.setEnabled(true);
             mealPlanButton.setEnabled(true);
             shoppingListButton.setEnabled(true);
+            // On below part: 
             userRequiredVerificationTextView.setVisibility(View.INVISIBLE);
             emailVerificationActionButton.setVisibility(View.INVISIBLE);
         }

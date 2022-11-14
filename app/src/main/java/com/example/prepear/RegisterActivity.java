@@ -94,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userName = userNameInput.getText().toString();
+                String userName = userNameInput.getText().toString(); //
                 String userEmail = userEmailInput.getText().toString().trim();
                 String userPasswordFirstAttempt = userFirstPasswordInput.getText().toString().trim();
                 String userPasswordSecondAttempt = userSecondPasswordInput.getText().toString().trim();
