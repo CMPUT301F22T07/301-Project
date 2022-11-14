@@ -11,14 +11,20 @@ package com.example.prepear;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -35,9 +41,12 @@ public class MainActivity extends AppCompatActivity {
     private TextView userNameTextView;
     private TextView userEmailTextView;
     private TextView userPhoneNumberTextView;
+    private TextView userRequiredVerificationTextView;
+    private Button emailVerificationActionButton;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore db;
     String userUID;
+
 
 
     @Override
@@ -56,12 +65,53 @@ public class MainActivity extends AppCompatActivity {
         // On below Part:
         final Button mealPlanButton = findViewById(R.id.meal_planner_button);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        final FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+
         userNameTextView = findViewById(R.id.userName_text);
         userEmailTextView = findViewById(R.id.userEmail_text);
         userPhoneNumberTextView = findViewById(R.id.user_phoneNumber_text);
+        userRequiredVerificationTextView = findViewById(R.id.email_verification_text);
+        emailVerificationActionButton = findViewById(R.id.email_verification_action_button);
+        if (currentUser.isEmailVerified()) {
+            ingredientStorageButton.setEnabled(true);
+            recipeFolderButton.setEnabled(true);
+            mealPlanButton.setEnabled(true);
+            shoppingListButton.setEnabled(true);
+            userRequiredVerificationTextView.setVisibility(View.INVISIBLE);
+            emailVerificationActionButton.setVisibility(View.INVISIBLE);
+        }
+        if (! currentUser.isEmailVerified()) { // if the user has not complete email verification link
+            userRequiredVerificationTextView.setVisibility(View.VISIBLE);
+            emailVerificationActionButton.setVisibility(View.VISIBLE);
+            userNameTextView.setVisibility(View.INVISIBLE);
+            userEmailTextView.setVisibility(View.INVISIBLE);
+            userPhoneNumberTextView.setVisibility(View.INVISIBLE);
+            ingredientStorageButton.setEnabled(false);
+            recipeFolderButton.setEnabled(false);
+            mealPlanButton.setEnabled(false);
+            shoppingListButton.setEnabled(false);
+            emailVerificationActionButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // On below part: send the verification link to user's email
+                    currentUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(v.getContext(), "Verification Email has been sent.",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d(currentUser.getUid(), "On Failure: Email not sent" + e.getMessage());
+                        }
+                    });
+                }
+            });
+        }
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
 
         userUID = firebaseAuth.getCurrentUser().getUid();
         DocumentReference currentUserDocRef = db.collection("Users").document(userUID);

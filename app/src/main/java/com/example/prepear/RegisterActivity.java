@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -29,6 +28,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -39,19 +39,21 @@ import java.util.Map;
 
 /**
  * This class is used by the user to sign up an account for PrePear app
+ * After user's successful register, the user will be re-directed to MainActivity (Home Page)
+ *
  */
 public class RegisterActivity extends AppCompatActivity {
     // on below part: initialize class variables
-    private EditText userNameInput;
-    private EditText userEmailInput;
-    private EditText userFirstPasswordInput;
-    private EditText userSecondPasswordInput;
-    private EditText userPhoneNumberInput;
-    private ProgressBar userProgressStatus;
-    private Button signUpButton;
-    private TextView loginText;
+    private EditText userNameInput; // EditText for user name input
+    private EditText userEmailInput; // EditText for user email input
+    private EditText userFirstPasswordInput; // EditText for user initial password input
+    private EditText userSecondPasswordInput; // EditText for user password confirmation input by re-typing
+    private EditText userPhoneNumberInput; // EditText for user phone number input
+    private ProgressBar userProgressStatus; // will be shown after user completes successful inputs
+    private Button signUpButton; // Button for submitting user input info for registering
+    private TextView loginText; // for user to log in with an existing account
     private String userUID; // store the unique User UID
-
+    // On below part: essential instances of Firebase to connect the FireStore cloud db and Authentication
     FirebaseAuth firebaseAuth;
     FirebaseFirestore db;
 
@@ -135,9 +137,24 @@ public class RegisterActivity extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) { //
+                        if (task.isSuccessful()) { // if user creates the account successfully
+                            // On below part: send the verification link to user's email
+                            FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+                            currentUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(RegisterActivity.this, "Verification Email has been sent. ",
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d(currentUser.getUid(), "On Failure: Email not sent" + e.getMessage());
+                                }
+                            });
+
                             Toast.makeText(RegisterActivity.this,"Successful registered!",
-                                    Toast.LENGTH_LONG).show();
+                                    Toast.LENGTH_LONG).show(); //
                             userUID = firebaseAuth.getCurrentUser().getUid();
                             DocumentReference userDocumentReference = db.collection("Users")
                                     .document(userUID);

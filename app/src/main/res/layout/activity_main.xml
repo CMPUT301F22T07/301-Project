@@ -12,7 +12,7 @@
         android:id="@+id/ingredient_storage_button"
         android:layout_width="293dp"
         android:layout_height="70dp"
-        android:layout_marginTop="272dp"
+        android:layout_marginTop="320dp"
         android:backgroundTint="@color/dark_brown"
         android:text="Ingredient Storage"
         app:cornerRadius="24dp"
@@ -79,6 +79,7 @@
         android:layout_width="136dp"
         android:layout_height="122dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="267dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -115,7 +116,7 @@
         app:layout_constraintBottom_toTopOf="@+id/ingredient_storage_button"
         app:layout_constraintStart_toEndOf="@+id/user_profile_imageView"
         app:layout_constraintTop_toBottomOf="@+id/userName_text"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/user_phoneNumber_text"
@@ -130,22 +131,51 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/ingredient_storage_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/user_profile_imageView"
-        app:layout_constraintTop_toBottomOf="@+id/userEmail_text" />
+        app:layout_constraintTop_toBottomOf="@+id/userEmail_text"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/userName_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="66dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="158dp"
         android:text="User Name"
         android:textColor="@color/black"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toEndOf="@+id/user_profile_imageView"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/email_verification_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:background="@color/black"
+        android:text="Email Verification Required"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_phoneNumber_text" />
+
+    <Button
+        android:id="@+id/email_verification_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Verify Now"
+        android:visibility="invisible"
+        app:backgroundTint="@color/dark_brown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_verification_text" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
