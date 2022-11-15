@@ -8,9 +8,6 @@
 
 package com.example.prepear;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -22,19 +19,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 
 /**
@@ -50,10 +44,8 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText userSecondPasswordInput; // EditText for user password confirmation input by re-typing
     private EditText userPhoneNumberInput; // EditText for user phone number input
     private ProgressBar userProgressStatus; // will be shown after user completes successful inputs
-    private Button signUpButton; // Button for submitting user input info for registering
-    private TextView loginText; // for user to log in with an existing account
-    private String userUID; // store the unique User UID
-    // On below part: essential instances of Firebase to connect the FireStore cloud db and Authentication
+    private String userUID; // String for storing the unique User UID
+    // On below part: essential instances of Firebase to connect the FireStore Cloud Database and Authentication
     FirebaseAuth firebaseAuth;
     FirebaseFirestore db;
 
@@ -69,8 +61,10 @@ public class RegisterActivity extends AppCompatActivity {
         userPhoneNumberInput = findViewById(R.id.user_phoneNumber_input);
         userProgressStatus = findViewById(R.id.fill_progressBar);
         userProgressStatus.setVisibility(View.INVISIBLE);
-        signUpButton = (Button) findViewById(R.id.register_confirm_button);
-        loginText = findViewById(R.id.already_registered_text);
+        // Button for submitting user input info for registering
+        Button signUpButton = findViewById(R.id.register_confirm_button);
+        // for user to log in with an existing account
+        TextView loginText = findViewById(R.id.already_registered_text);
 
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -81,109 +75,82 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         // On below part: for the user to login with existing account and password
-        loginText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent loginActivity = new Intent( RegisterActivity.this,
-                        LoginActivity.class);
-                startActivity(loginActivity);
-            }
-
+        loginText.setOnClickListener(v -> {
+            Intent loginActivity = new Intent( RegisterActivity.this,
+                    LoginActivity.class);
+            startActivity(loginActivity); // launch and direct to login activity/page
         });
 
-        signUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String userName = userNameInput.getText().toString(); //
-                String userEmail = userEmailInput.getText().toString().trim();
-                String userPasswordFirstAttempt = userFirstPasswordInput.getText().toString().trim();
-                String userPasswordSecondAttempt = userSecondPasswordInput.getText().toString().trim();
-                String userPhoneNumber = userPhoneNumberInput.getText().toString().trim();
+        signUpButton.setOnClickListener(v -> {
+            // On below part: get the String which stores the corresponding user register info input from specific EditText field
+            String userName = userNameInput.getText().toString();
+            String userEmail = userEmailInput.getText().toString().trim();
+            String userPasswordFirstAttempt = userFirstPasswordInput.getText().toString().trim();
+            String userPasswordSecondAttempt = userSecondPasswordInput.getText().toString().trim();
+            String userPhoneNumber = userPhoneNumberInput.getText().toString().trim();
 
-                if (TextUtils.isEmpty(userName)){ // if username field is empty when registering
-                    userNameInput.setError("Please enter your username!");
-                    return;
-                }
-                if (TextUtils.isEmpty(userEmail)) { //
-                    userEmailInput.setError("Please enter your email!");
-                    return;
-                }
-                if (TextUtils.isEmpty(userPasswordFirstAttempt)) { //
-                    userFirstPasswordInput.setError("Please enter your password!");
-                    return;
-                }
-                if (TextUtils.isEmpty(userPasswordSecondAttempt)) { //
-                    userSecondPasswordInput.setError("Please enter your password!");
-                    return;
-                }
-                if (userName.length() < 6 || userName.length() > 50) { //
-                    userNameInput.setError("Username enter range is 6 - 100");
-                    return;
-                }
+            if (TextUtils.isEmpty(userName)){ // if user name field is empty when registering
+                userNameInput.setError("Please enter your username!");
+                return;
+            }
+            if (TextUtils.isEmpty(userEmail)) { // if user email field is empty when registering
+                userEmailInput.setError("Please enter your email!");
+                return;
+            }
+            if (TextUtils.isEmpty(userPasswordFirstAttempt)) { // if user first password field is empty when registering
+                userFirstPasswordInput.setError("Please enter your password!");
+                return;
+            }
+            if (TextUtils.isEmpty(userPasswordSecondAttempt)) { // if user second password field is empty when registering
+                userSecondPasswordInput.setError("Please enter your password!");
+                return;
+            }
+            if (userName.length() < 6 || userName.length() > 50) { // if entered user name has a length less than 6 or more than 50 letters
+                userNameInput.setError("Username enter range is 6 - 100");
+                return;
+            }
 
-                if (userPasswordFirstAttempt.length() < 6) { //
-                    userFirstPasswordInput.setError("User password minimum length is 6.");
-                }
+            if (userPasswordFirstAttempt.length() < 6) { // if user password length is less than 6
+                userFirstPasswordInput.setError("User password minimum length is 6.");
+            }
 
-                if (! userPasswordFirstAttempt.equals(userPasswordSecondAttempt)) { //
-                    userSecondPasswordInput.setError("Your password does not match!");
-                    return;
-                }
+            if (! userPasswordFirstAttempt.equals(userPasswordSecondAttempt)) { // if user first password doesn't match with re-typing password
+                userSecondPasswordInput.setError("Your password does not match!");
+                return;
+            }
 
-                userProgressStatus.setVisibility(View.VISIBLE);
+            userProgressStatus.setVisibility(View.VISIBLE); // display the progress bar to tell user it is now loading and check for register validation
 
-                /* Register the user in FireBase */
-                firebaseAuth.createUserWithEmailAndPassword(userEmail, userPasswordFirstAttempt)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+            /* Register the user in FireBase */
+            firebaseAuth.createUserWithEmailAndPassword(userEmail, userPasswordFirstAttempt)
+                    .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) { // if user creates the account successfully
                             // On below part: send the verification link to user's email
                             FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-                            currentUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    Toast.makeText(RegisterActivity.this, "Verification Email has been sent. ",
-                                            Toast.LENGTH_LONG).show();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d(currentUser.getUid(), "On Failure: Email not sent" + e.getMessage());
-                                }
-                            });
+                            currentUser.sendEmailVerification().addOnSuccessListener(unused -> Toast.makeText(RegisterActivity.this, "Verification Email has been sent. ",
+                                    Toast.LENGTH_LONG).show()).addOnFailureListener(e -> Log.d(currentUser.getUid(), "On Failure: Email not sent" + e.getMessage()));
 
                             Toast.makeText(RegisterActivity.this,"Successful registered!",
-                                    Toast.LENGTH_LONG).show(); //
+                                    Toast.LENGTH_LONG).show();
                             userUID = firebaseAuth.getCurrentUser().getUid();
                             DocumentReference userDocumentReference = db.collection("Users")
                                     .document(userUID);
-                            Map<String,Object> userInfo = new HashMap<>();
+                            // On below part: store user personal info in db
+                            Map<String,Object> userInfo = new HashMap<>(); // contain key-value pairs for user info
                             userInfo.put("UserName", userName);
                             userInfo.put("UserEmail",userEmail);
                             userInfo.put("UserPhoneNumber", userPhoneNumber);
                             userDocumentReference.set(userInfo)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    Log.d(userName, "registered information is stored successfully");
-                                }
-                            }) .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Log.d(userName, "info adding failure on:" + e.toString());
-                                        }
-                                    });
+                                    .addOnSuccessListener(unused -> Log.d(userName, "registered information is stored successfully"))
+                                    .addOnFailureListener(e -> Log.d(userName, "info adding failure on:" + e));
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
                         } else {
-                            Toast.makeText(RegisterActivity.this, task.getException().getMessage(),
+                            Toast.makeText(RegisterActivity.this, Objects.requireNonNull(task.getException()).getMessage(),
                                     Toast.LENGTH_LONG).show();
-                            userProgressStatus.setVisibility(View.GONE);
+                            userProgressStatus.setVisibility(View.GONE); // hide the progressBar without successful task
                         }
-                    }
-                });
-            }
+                    });
         });
 
 

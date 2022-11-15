@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             recipeFolderButton.setEnabled(true);
             mealPlanButton.setEnabled(true);
             shoppingListButton.setEnabled(true);
-            // On below part: 
+            // On below part:
             userRequiredVerificationTextView.setVisibility(View.INVISIBLE);
             emailVerificationActionButton.setVisibility(View.INVISIBLE);
         }
