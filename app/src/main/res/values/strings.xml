@@ -1,3 +1,99 @@
 <resources>
     <string name="app_name">PrePear</string>
+    <string name="title_header">Title:</string>
+    <string name="preparation_time_header">Preparation Time (/min):</string>
+    <string name="number_of_servings_header">Number of Servings:</string>
+    <string name="recipe_category_header">Recipe Category:</string>
+    <string name="new_recipe_category_header">Enter New Recipe Category:</string>
+    <string name="comments_header">Comments:</string>
+    <string name="ingredient_list_header">Ingredients:</string>
+    <string name="title_text">Title</string>
+    <string name="preparation_time_text">Preparation Time</string>
+    <string name="number_of_servings_text">Number of Servings</string>
+    <string name="recipe_category_text">Recipe Category</string>
+    <string name="comments_text">Comments</string>
+    <string name="brief_description_text">Brief Description</string>
+    <string name="amount_text">Amount</string>
+    <string name="unit_text">Unit</string>
+    <string name="ingredient_category_text">Ingredient Category</string>
+    <string name="edit_button_text">Edit</string>
+    <string name="delete_button_text">Delete</string>
+    <string name="return_button_text">Return</string>
+    <string name="add_ingredient_button_text">Add Ingredient</string>
+    <string name="edit_image_button_text">Edit Image Button</string>
+    <string name="commit_button_text">Commit</string>
+    <string name="cancel_button_text">Cancel</string>
+    <string name="recipe_image_text">Recipe Image</string>
+    <string-array name="ingredient_categories">
+        <item></item>
+        <item>Eggs, milk, and milk product</item>
+        <item>Fats and oils</item>
+        <item>Fruits</item>
+        <item>Grain, nuts, and baking products</item>
+        <item>Herbs and spices</item>
+        <item>Meat, sausages, and fish</item>
+        <item>Pasta, rice, and pulses</item>
+        <item>Vegetables</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="locations">
+        <item></item>
+        <item>Bin</item>
+        <item>Box</item>
+        <item>Freezer</item>
+        <item>Fridge</item>
+        <item>Pantry</item>
+        <item>Shelf</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="units">
+        <item></item>
+        <item>g</item>
+        <item>kg</item>
+        <item>oz</item>
+        <item>lb</item>
+        <item>ml</item>
+        <item>L</item>
+        <item>quantities</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="recipe_category">
+        <item></item>
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+        <item>Appetizer</item>
+        <item>Salad</item>
+        <item>Main-course</item>
+        <item>Side-dish</item>
+        <item>Baked-good</item>
+        <item>Dessert</item>
+        <item>Snack</item>
+        <item>Soap</item>
+        <item>Holiday</item>
+        <item>Vegetarian</item>
+        <item>Other</item>
+    </string-array>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_ingredient">Ingredient</string>
+    <string name="menu_Recipe">Recipe Folder</string>
+    <string name="menu_MealPlan">Meal Plan</string>
+    <string name="menu_ShoppingList">Shopping List</string>
+    <string name="title_activity_add_edit_ingredient">AddEditIngredientActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>
