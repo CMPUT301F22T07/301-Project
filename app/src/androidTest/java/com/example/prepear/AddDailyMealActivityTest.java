@@ -27,6 +27,10 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * This class tests the AddDailyMealActivity class using Robotium
  */
@@ -50,27 +54,26 @@ public class AddDailyMealActivityTest {
     @SuppressWarnings("deprecation")
     public void addMealFromIngredientStorage(){
         // Add a daily meal plan
-        solo.clickOnButton("Log In"); // click log in Button
-        solo.clickOnImageButton(0);  // click the navigation button
-        solo.clickOnText("MealPlan");
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         View button = solo.getView(R.id.add_meal_plan_button);
         solo.clickOnView(button); // click the add meal plan button
         // enter start and end dates
-        solo.enterText((EditText) solo.getView(R.id.start_date), "2023-09-10");
+        solo.enterText((EditText) solo.getView(R.id.start_date), date);
         solo.clickOnText("OK");
-        solo.enterText((EditText) solo.getView(R.id.end_date), "2023-09-10");
+        solo.enterText((EditText) solo.getView(R.id.end_date), date);
         solo.clickOnText("OK");
         // click on ingredient radio button
         RadioButton rb = (RadioButton) solo.getView(R.id.ingredient_radioButton);
         solo.clickOnView(rb);
         // select an ingredient and click confirm button
         solo.clickInList(0);
-        solo.clickOnText("CONFIRM");
+        solo.clickOnButton(1);
         // enter a valid input for amount
         solo.enterText((EditText) solo.getView(R.id.amount), "2");
         solo.clickOnButton("CONFIRM");
         // click on the entered daily meal plan
-        solo.clickOnText("2023-09-10");
+        solo.clickOnText(date);
+        solo.assertCurrentActivity("Wrong Activity", ViewDailyMealPlanActivity.class);
         // click the add meal button
         solo.clickOnButton("Add A Meal");
         // check if the amount edit text is invisible, and the add meal button is disabled
@@ -80,7 +83,7 @@ public class AddDailyMealActivityTest {
         solo.clickOnButton("Pick a meal from Ingredient Storage");
         // select meal and press confirm
         solo.clickInList(1);
-        solo.clickOnText("CONFIRM");
+        solo.clickOnButton(1);
         solo.assertCurrentActivity("Wrong Activity", AddDailyMealActivity.class);
         assertTrue(solo.getView(R.id.add_meal_in_plan_button).isEnabled());
         assertEquals(View.VISIBLE, solo.getView(R.id.meal_amount_input).getVisibility());
@@ -99,12 +102,15 @@ public class AddDailyMealActivityTest {
         solo.assertCurrentActivity("Wrong Activity", ViewDailyMealPlanActivity.class);
         // check if meal is added to the list
         assertTrue(solo.searchText("Amount: 3"));
+        // pick time of meal
+        solo.clickOnButton("SELECT TIME");
+
         solo.clickOnButton("BACK");
         // check that the meal plan was added to the list
-        assertTrue(solo.searchText("2023-09-10"));
+        assertTrue(solo.searchText(date));
         // delete item added
-        solo.clickLongOnText("2023-09-10");
-        solo.clickOnButton("Confirm");
+        solo.clickLongOnText(date);
+        solo.clickOnButton(date);
     }
 
     /**
