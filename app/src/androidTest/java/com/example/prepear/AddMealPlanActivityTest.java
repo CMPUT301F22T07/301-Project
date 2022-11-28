@@ -6,7 +6,6 @@
  * Copyright Notice:
  */
 package com.example.prepear;
-
 import static androidx.constraintlayout.widget.ConstraintLayoutStates.TAG;
 import static org.junit.Assert.assertTrue;
 
@@ -69,13 +68,13 @@ public class AddMealPlanActivityTest {
     @Test
     @SuppressWarnings("deprecation")
     public void TestAddingFromIngredientStorage() {
-        View button = solo.getView(R.id.add_meal_plan_button);
-        solo.clickOnView(button); // click the add meal plan button
-        View confirm = solo.getView(R.id.confirm);
+//        View button = solo.getView(R.id.add_meal_plan_button);
+        solo.clickOnView(solo.getView(R.id.add_meal_plan_button)); // click the add meal plan button
+//        View confirm = solo.getView(R.id.confirm);
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         // leave start and end dates empty
         solo.sleep(2000);
-        solo.clickOnView(confirm);
+        solo.clickOnView(solo.getView(R.id.confirm));
         solo.assertCurrentActivity("Wrong Activity", AddMealPlanActivity.class);
         // enter start and end dates
         solo.sleep(2000);
@@ -96,16 +95,16 @@ public class AddMealPlanActivityTest {
         // enter 0 for amount
         solo.enterText((EditText) solo.getView(R.id.amount), "0");
         solo.sleep(2000);
-        solo.clickOnView(confirm);
+        solo.clickOnView(solo.getView(R.id.confirm));
         solo.assertCurrentActivity("Wrong Activity", AddMealPlanActivity.class);
         // leave amount empty
         solo.clearEditText((EditText) solo.getView(R.id.amount));
         solo.sleep(2000);
-        solo.clickOnView(confirm);
+        solo.clickOnView(solo.getView(R.id.confirm));
         // enter a valid input for amount
         solo.enterText((EditText) solo.getView(R.id.amount), "2");
         solo.sleep(2000);
-        solo.clickOnView(confirm);
+        solo.clickOnView(solo.getView(R.id.confirm));
         solo.sleep(2000);
         // check that the meal plan was added to the list
         assertTrue(solo.searchText(date));
@@ -120,10 +119,10 @@ public class AddMealPlanActivityTest {
     @Test
     @SuppressWarnings("deprecation")
     public void TestAddingFromRecipeFolder(){
-        View button = solo.getView(R.id.add_meal_plan_button);
-        solo.clickOnView(button); // click the add meal plan button
+//        View button = solo.getView(R.id.add_meal_plan_button);
+        solo.clickOnView(solo.getView(R.id.add_meal_plan_button)); // click the add meal plan button
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        View confirm = solo.getView(R.id.confirm);
+//        View confirm = solo.getView(R.id.confirm);
         // enter start and end dates
         solo.sleep(2000);
         solo.enterText((EditText) solo.getView(R.id.start_date), date);
@@ -143,16 +142,16 @@ public class AddMealPlanActivityTest {
         // enter 0 for amount
         solo.enterText((EditText) solo.getView(R.id.number_of_servings), "0");
         solo.sleep(3000);
-        solo.clickOnView(confirm);
+        solo.clickOnView(solo.getView(R.id.confirm));
         solo.assertCurrentActivity("Wrong Activity", AddMealPlanActivity.class);
         // leave amount empty
         solo.clearEditText((EditText) solo.getView(R.id.number_of_servings));
         solo.sleep(3000);
-        solo.clickOnView(confirm);
+        solo.clickOnView(solo.getView(R.id.confirm));
         // enter a valid input for amount
         solo.enterText((EditText) solo.getView(R.id.number_of_servings), "2");
         solo.sleep(3000);
-        solo.clickOnView(confirm);
+        solo.clickOnView(solo.getView(R.id.confirm));
         solo.sleep(3000);
         // check that the meal plan was added to the list
         assertTrue(solo.searchText(date));
@@ -168,8 +167,8 @@ public class AddMealPlanActivityTest {
     @SuppressWarnings("deprecation")
     public void testAddingMultiplePlans() throws ParseException {
         // Add a daily meal plan
-        View confirm = solo.getView(R.id.confirm);
-        View cancel = solo.getView(R.id.cancel);
+//        View confirm = solo.getView(R.id.confirm);
+//        View cancel = solo.getView(R.id.cancel);
         SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         View button = solo.getView(R.id.add_meal_plan_button);
@@ -181,7 +180,7 @@ public class AddMealPlanActivityTest {
         solo.sleep(2000);
         solo.enterText((EditText) solo.getView(R.id.end_date), (LocalDate.parse(date).plusDays(3).toString()));
         solo.sleep(2000);
-        solo.clickOnView(cancel);
+        solo.clickOnView(solo.getView(R.id.cancel));
         // click on ingredient radio button
         RadioButton rb = (RadioButton) solo.getView(R.id.ingredient_radioButton);
         solo.clickOnView(rb);
@@ -192,7 +191,7 @@ public class AddMealPlanActivityTest {
         // enter a valid input for amount
         solo.enterText((EditText) solo.getView(R.id.amount), "2");
         solo.sleep(2000);
-        solo.clickOnView(confirm);
+        solo.clickOnView(solo.getView(R.id.confirm));
         // check that the meal plan was added to the list
         LocalDate end = LocalDate.parse(date).plusDays(3);
         for (LocalDate day = LocalDate.parse(date); day.isBefore(end) || day.isEqual(end);
@@ -210,11 +209,11 @@ public class AddMealPlanActivityTest {
     @Test
     @SuppressWarnings("deprecation")
     public void testChoosingMealBeforeDates(){
-        View confirm = solo.getView(R.id.confirm);
+//        View confirm = solo.getView(R.id.confirm);
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         // Add a daily meal plan
-        View button = solo.getView(R.id.add_meal_plan_button);
-        solo.clickOnView(button); // click the add meal plan button
+//        View button = solo.getView(R.id.add_meal_plan_button);
+        solo.clickOnView(solo.getView(R.id.add_meal_plan_button)); // click the add meal plan button
         // click on ingredient radio button
         RadioButton rb = (RadioButton) solo.getView(R.id.ingredient_radioButton);
         solo.clickOnView(rb);
@@ -229,7 +228,7 @@ public class AddMealPlanActivityTest {
         solo.enterText((EditText) solo.getView(R.id.end_date), date);
         solo.clickOnText("OK");
         solo.sleep(2000);
-        solo.clickOnView(confirm);
+        solo.clickOnView(solo.getView(R.id.confirm));
         // check that the meal plan was added to the list
         solo.sleep(2000);
         // check that the meal plan was added to the list
