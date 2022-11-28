@@ -325,7 +325,7 @@ public class MealPlanFragment extends Fragment implements
                                      */
                                     if (duplicateDay.getDailyMealDataList().get(k).getDocumentID()
                                             .matches(currentDailyMealPlan.getDailyMealDataList().get(0).getDocumentID())
-                                            && currentDailyMealPlan.getDailyMealDataList().get(0).getMealType().matches("IngredientInStorage")){
+                                            && currentDailyMealPlan.getDailyMealDataList().get(0).getMealType().matches("IngredientInStorage")) {
                                        /* if document ID matches, and the daily meal plan type
                                            is ingredient, add the amounts into one
                                          */
@@ -337,6 +337,12 @@ public class MealPlanFragment extends Fragment implements
                                                 duplicateDay, duplicateDay.getDailyMealDataList().get(k));
                                         mealAddedToDataList = true;
                                         break;
+                                    } else if (duplicateDay.getDailyMealDataList().get(k).getDocumentID()
+                                            .matches(currentDailyMealPlan.getDailyMealDataList().get(0).getDocumentID())
+                                            && currentDailyMealPlan.getDailyMealDataList().get(0).getMealType().matches("Recipe")) {
+                                        databaseController.addEditMealToDailyMealPlan(getContext(),
+                                                currentDailyMealPlan, currentDailyMealPlan.getDailyMealDataList().get(0));
+                                        mealAddedToDataList = true;
                                     }
                                 }
                                 /* if daily meal plan isn't added to the list either because
