@@ -44,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title_header"
+            android:textStyle="bold"
             android:textSize="16sp"/>
 
         <TextView
@@ -72,6 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/preparation_time_header"
+            android:textStyle="bold"
             android:textSize="16sp"/>
 
         <TextView
@@ -100,6 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/number_of_servings_header"
+            android:textStyle="bold"
             android:textSize="16sp"/>
 
         <TextView
@@ -128,6 +131,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/recipe_category_header"
+            android:textStyle="bold"
             android:textSize="16sp"/>
 
         <TextView
@@ -156,6 +160,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/comments_header"
+            android:textStyle="bold"
             android:textSize="16sp"/>
 
         <TextView
@@ -174,6 +179,7 @@
         android:layout_height="wrap_content"
         android:text="@string/ingredient_list_header"
         android:layout_marginTop="20dp"
+        android:textStyle="bold"
         android:layout_marginStart="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/comments_LinearLayout"
@@ -197,6 +203,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
+            android:textStyle="bold"
             android:text="@string/brief_description_text"
             android:textSize="16sp"/>
 
@@ -206,6 +213,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:text="@string/amount_text"
+            android:textStyle="bold"
             android:textSize="16sp"/>
 
         <TextView
@@ -214,6 +222,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:text="@string/unit_text"
+            android:textStyle="bold"
             android:textSize="16sp"/>
 
         <TextView
@@ -222,6 +231,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:text="@string/ingredient_category_text"
+            android:textStyle="bold"
             android:textSize="16sp"/>
     </LinearLayout>
 

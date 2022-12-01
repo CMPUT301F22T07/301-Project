@@ -19,7 +19,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="16dp"
+            android:textSize="19dp"
+            android:layout_gravity="center"
             android:textStyle="bold"
             android:textColor="@color/green_pear"
             android:text="Description:" />
@@ -29,9 +30,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:ems="10"
+            android:background="@drawable/spinner_background"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
             android:minHeight="48dp" />
     </LinearLayout>
 
@@ -52,9 +56,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Amount:"
+            android:layout_gravity="center"
             android:textStyle="bold"
             android:textColor="@color/green_pear"
-            android:textSize="16dp"
+            android:textSize="19dp"
             />
 
         <TextView
@@ -62,9 +67,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textAlignment="center"
             android:layout_marginLeft="10dp"
             android:ems="10"
+            android:background="@drawable/spinner_background"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
             android:minHeight="48dp"
             tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
@@ -85,9 +93,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Unit:"
+            android:layout_gravity="center"
             android:textStyle="bold"
             android:textColor="@color/green_pear"
-            android:textSize="16dp"
+            android:textSize="19dp"
             />
 
         <TextView
@@ -95,10 +104,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textAlignment="center"
+            android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             android:ems="10"
             android:minHeight="48dp"
+            android:background="@drawable/spinner_background"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
             tools:ignore="SpeakableTextPresentCheck" />
 
     </LinearLayout>
@@ -120,9 +133,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Category:"
+            android:layout_gravity="center"
             android:textStyle="bold"
             android:textColor="@color/green_pear"
-            android:textSize="16dp"
+            android:textSize="19dp"
             />
 
         <TextView
@@ -131,8 +145,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:ems="10"
             android:minHeight="48dp"
+            android:background="@drawable/spinner_background"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
             tools:ignore="SpeakableTextPresentCheck" />
 
     </LinearLayout>
@@ -156,7 +175,8 @@
             android:text="Actual Amount:"
             android:textStyle="bold"
             android:textColor="@color/green_pear"
-            android:textSize="16dp" />
+            android:layout_gravity="center"
+            android:textSize="19dp" />
 
         <EditText
             android:id="@+id/ingredient_actual_amount"
@@ -166,9 +186,11 @@
             android:layout_marginLeft="10dp"
             android:ems="10"
             android:maxLength="100"
-            android:hint="Amount of actual ingredient"
+            android:hint="Enter actual amount:"
             android:inputType="numberDecimal"
             android:minHeight="48dp"
+            android:textSize="18dp"
+            android:textStyle="bold"
             tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
 
@@ -188,9 +210,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Best Before Date:"
+            android:layout_gravity="center"
             android:textStyle="bold"
             android:textColor="@color/green_pear"
-            android:textSize="16dp" />
+            android:textSize="17dp" />
 
         <EditText
             android:id="@+id/best_before_date"
@@ -198,10 +221,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:layout_marginLeft="7dp"
             android:layout_marginRight="10dp"
             android:focusable="false"
-            android:hint="select date:"
+            android:hint="Select date:"
+            android:textSize="18dp"
+            android:textStyle="bold"
             android:minHeight="48dp" />
     </LinearLayout>
 
@@ -220,8 +244,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="16dp"
+            android:textSize="19dp"
             android:text="Location:"
+            android:layout_gravity="center"
             android:textStyle="bold"
             android:textColor="@color/green_pear" />
 
@@ -245,6 +270,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
         android:orientation="horizontal"
         android:visibility="gone">
 
@@ -252,10 +279,10 @@
             android:id="@+id/location1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="12dp"
             android:layout_gravity="center"
-            android:text="Enter New Location:"
+            android:layout_weight="1"
+            android:textSize="17dp"
+            android:text="New Location:"
             android:textColor="@color/green_pear"
             android:textStyle="bold" />
 
@@ -267,6 +294,10 @@
             android:ems="10"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
+            android:background="@drawable/spinner_background"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
             android:minHeight="48dp" />
     </LinearLayout>
 

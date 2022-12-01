@@ -19,7 +19,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="16dp"
+            android:layout_marginRight="5dp"
+            android:textSize="19dp"
+            android:layout_gravity="center"
             android:textStyle="bold"
             android:textColor="@color/green_pear"
             android:text="Description:" />
@@ -28,12 +30,15 @@
             android:id="@+id/brief_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/spinner_background"
             android:ems="10"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:textAlignment="center"
+            android:textSize="17dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -53,18 +58,23 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Amount:"
+            android:layout_gravity="center"
             android:textStyle="bold"
             android:textColor="@color/green_pear"
-            android:textSize="16dp"
+            android:textSize="19dp"
             />
 
         <TextView
             android:id="@+id/ingredient_amount"
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:background="@drawable/spinner_background"
             android:ems="10"
+            android:textAlignment="center"
             android:minHeight="48dp"
             tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
@@ -86,18 +96,23 @@
             android:layout_weight="1"
             android:text="Unit:"
             android:textStyle="bold"
+            android:layout_gravity="center"
             android:textColor="@color/green_pear"
-            android:textSize="16dp"
+            android:textSize="19dp"
             />
 
         <TextView
             android:id="@+id/ingredient_unit"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginLeft="10dp"
             android:ems="10"
+            android:layout_marginRight="190dp"
             android:minHeight="48dp"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:background="@drawable/spinner_background"
             tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
 
@@ -119,8 +134,9 @@
             android:layout_weight="1"
             android:text="Category:"
             android:textStyle="bold"
+            android:layout_gravity="center"
             android:textColor="@color/green_pear"
-            android:textSize="16dp"
+            android:textSize="19dp"
             />
 
         <TextView
@@ -128,8 +144,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/spinner_background"
             android:layout_marginLeft="10dp"
+            android:textStyle="bold"
+            android:textSize="18dp"
             android:ems="10"
+            android:textAlignment="center"
             android:minHeight="48dp"
             tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>

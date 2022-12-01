@@ -180,6 +180,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
+            android:background="@drawable/spinner_background"
             android:ems="10"
             android:nextFocusDown="@+id/recipe_category_EditText"
             android:textSize="16sp"/>
@@ -309,7 +310,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:textStyle="bold"
-            android:gravity="center"
             android:text="@string/brief_description_text"
             android:textSize="16sp"/>
 
@@ -319,7 +319,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:textStyle="bold"
-            android:gravity="center"
             android:layout_gravity="center"
             android:text="@string/amount_text"
             android:textSize="16sp"/>
@@ -330,7 +329,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:textStyle="bold"
-            android:gravity="center"
             android:layout_gravity="center"
             android:text="@string/unit_text"
             android:textSize="16sp"/>
@@ -342,7 +340,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:textStyle="bold"
-            android:gravity="center"
             android:text="@string/ingredient_category_text"
             android:textSize="16sp"/>
     </LinearLayout>
