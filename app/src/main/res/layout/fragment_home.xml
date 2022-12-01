@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/goodpear"
+    android:background="@drawable/yellow_pear_vector"
     tools:context=".LoginActivity">
 
     <com.google.android.material.button.MaterialButton
@@ -15,6 +15,7 @@
         android:layout_marginBottom="50dp"
         android:backgroundTint="@color/dark_brown"
         android:text="Ingredient Storage"
+        android:visibility="gone"
         app:cornerRadius="24dp"
         app:layout_constraintBottom_toTopOf="@+id/recipe_folder_button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,6 +28,7 @@
         android:layout_height="70dp"
         android:backgroundTint="@color/light_brown"
         android:text="Recipes Folder"
+        android:visibility="gone"
         app:cornerRadius="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,6 +41,7 @@
         android:layout_marginBottom="50dp"
         android:backgroundTint="@color/yellow_pear"
         android:text="Meal Planner"
+        android:visibility="gone"
         app:cornerRadius="24dp"
         app:layout_constraintBottom_toTopOf="@+id/shopping_list_button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,6 +54,7 @@
         android:layout_height="70dp"
         android:backgroundTint="@color/green_pear"
         android:text="Shopping List"
+        android:visibility="gone"
         app:cornerRadius="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

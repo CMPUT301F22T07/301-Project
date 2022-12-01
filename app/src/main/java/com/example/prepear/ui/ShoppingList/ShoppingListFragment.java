@@ -56,9 +56,9 @@ import java.util.Date;
 public class ShoppingListFragment extends Fragment {
 
     // Define start date, end date and new date of shopping
-    private String startDate, endDate, newDate;
-    // Define the ways to sort
-    final String[] sortItemSpinnerContent = {"  ----select----  ", "Description", "Category"};
+        private String startDate, endDate, newDate;
+        // Define the ways to sort
+    final String[] sortItemSpinnerContent = {"              ----select----  ", "Description", "Category"};
     // Define the shoppingList controller
     private ShoppingListController ingredientShoppingList;  // store all the ingredients needed to show in the listView
     // Define the shoppingList adapter

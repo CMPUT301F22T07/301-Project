@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/goodpear"
+    android:background="@drawable/yellow_pear_vector"
     tools:context=".LoginActivity">
 
     <TextView
@@ -47,9 +47,9 @@
         android:hint="User Email"
         app:counterEnabled="true"
         app:counterMaxLength="100"
+        app:endIconMode="clear_text"
         app:helperText="Field Required*"
         app:helperTextTextColor="@color/red"
-        app:endIconMode="clear_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,9 +72,9 @@
         android:layout_marginBottom="230dp"
         android:background="@color/white"
         android:hint="Password"
+        app:endIconMode="password_toggle"
         app:helperText="Field Required*"
         app:helperTextTextColor="@color/red"
-        app:endIconMode="password_toggle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
